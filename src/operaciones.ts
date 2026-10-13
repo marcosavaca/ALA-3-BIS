@@ -101,13 +101,13 @@ export async function verTareas(listaDeTareas: Tarea[]): Promise<void>
 
 export async function verDetalleTarea(listaDeTareas: Tarea[],indice: number): Promise<void>
     {
-        if (!listaDeTareas[indice-1]) 
+        if (!listaDeTareas[indice]) 
         {
             console.log("Tarea no encontrada.\n");
             return;
         }
         // En tipos2 se pondria: listaDeTareas[indice-1].mostrarDetalle();
-        listaDeTareas[indice-1].mostrarDetalle();  //Ahora a cada instancia de la tarea tiene su propio comportamiento de mostrar sus atributos
+        listaDeTareas[indice].mostrarDetalle();  //Ahora a cada instancia de la tarea tiene su propio comportamiento de mostrar sus atributos
         console.log("Si deseas editarla presione E o 0 para volver. \n");
         let entrada =await pedirDato( ">  \n", ["E","0"],true);
         if(entrada==="0")
@@ -115,7 +115,7 @@ export async function verDetalleTarea(listaDeTareas: Tarea[],indice: number): Pr
             return;
         }
         
-        console.log(`Estas editando la tarea: ${listaDeTareas[indice-1].titulo}  \n`);
+        console.log(`Estas editando la tarea: ${listaDeTareas[indice].titulo}  \n`);
         console.log("-Si deseas mantener los valores de un atributo, simplemente dejalo en blanco (no espacio) \n");
         console.log("-Si deseas dejar en blanco un atributo, escribe un espacio. \n");
         // A los atributos que pueden sar vacios se les agrega a opciones validas un espacio: " ".
@@ -124,11 +124,11 @@ export async function verDetalleTarea(listaDeTareas: Tarea[],indice: number): Pr
         const nuevaDificultad = await pedirDato( "3. Dificultad ([1]/[2]/[3]) o dejalo en blanco para mantener(no espacio) \n", ["1", "2", "3",""],true);
         const vencimiento=await pedirFecha("4.Ingrese fecha de vencimiento (AAAA-MM-DD)\n", true);
         //Lo mismo en tipos2.ts.
-        listaDeTareas[indice-1].editar(
-            resolverEdicion(nuevaDescripcion, listaDeTareas[indice-1].descripcion),
+        listaDeTareas[indice].editar(
+            resolverEdicion(nuevaDescripcion, listaDeTareas[indice].descripcion),
             nuevoEstado,
             nuevaDificultad,
-            resolverFecha(vencimiento,listaDeTareas[indice-1].fechaVencimiento)
+            resolverFecha(vencimiento,listaDeTareas[indice].fechaVencimiento)
         );
         //Escribimos nuevamente:
         await escribirArchivo(listaDeTareas);

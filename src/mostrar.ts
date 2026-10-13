@@ -52,12 +52,13 @@ export async function imprimirtarea(listaDeTareas: Tarea[],condicion: string | n
 
         console.log("¿Deseas ver los detalles de alguna? \n");
         let entrada = await pedirNumero("Introduce el numero de la tarea o 0 para volver \n",0,tareasFiltradas.length);
-    
         const indice = Number(entrada);
         if (indice===0)
         {
          return;
         }
+        const tareaSeleccionada = tareasFiltradas[indice-1];
+        const indiceOriginal = listaDeTareas.indexOf(tareaSeleccionada);
 
-        await verDetalleTarea(tareasFiltradas, indice);
+        await verDetalleTarea(listaDeTareas, indiceOriginal);
     }

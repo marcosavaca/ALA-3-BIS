@@ -5,7 +5,7 @@ export async function CargarTareas():Promise<Tarea[]>
     try 
     {
         console.log("Cargando Tareas................. \n");
-        const contenido = await fs.readFile('../archivos/tasks.json', 'utf-8'); // subimos un nivel con .. 
+        const contenido = await fs.readFile('./archivos/tasks.json', 'utf-8'); 
         console.log("Completado! \n");
         const tareasplanas=JSON.parse(contenido);
 
@@ -49,7 +49,7 @@ export async function escribirArchivo(listaDeTareas:Tarea[]):Promise<void>
     const contenido = JSON.stringify(listaDeTareas, null, 2);
     try 
     {
-        await fs.writeFile('../archivos/tasks.json', contenido,"utf-8");
+        await fs.writeFile('./archivos/tasks.json', contenido,"utf-8");
         console.log("Archivo guardado con éxito");
     } catch (error) 
     {
